@@ -19,17 +19,19 @@ def map_wires(lines):
     return [l.split(",") for l in lines]
 
 
+funcs = {
+    "U": lambda p: Point(p.x, p.y + 1),
+    "D": lambda p: Point(p.x, p.y - 1),
+    "L": lambda p: Point(p.x + 1, p.y),
+    "R": lambda p: Point(p.x - 1, p.y)
+}
+
+
 def get_points(wire):
     def map_segment(points, segment):
         dir = segment[0]
         count = int(segment[1:])
 
-        funcs = {
-            "U": lambda p: Point(p.x, p.y + 1),
-            "D": lambda p: Point(p.x, p.y - 1),
-            "L": lambda p: Point(p.x + 1, p.y),
-            "R": lambda p: Point(p.x - 1, p.y)
-        }
         for _ in range(count):
             prev = points[-1]
             points.append(funcs[dir](prev))
