@@ -1,8 +1,7 @@
 from common import parse_args_and_get_input, assert_equal
-from enum import Enum
 
 
-class Op(Enum):
+class Op:
     add = 1
     mult = 2
     inp = 3
@@ -102,10 +101,10 @@ code_immutable = tuple(int(x) for x in lines[0].split(","))
 
 if args.part_one:
     code = list(code_immutable)
-    input_buffer = 1
     answer = run_code(code, lambda: 1, lambda x: print("PRINT {}".format(x)))
 else:
-    answer = None
+    code = list(code_immutable)
+    answer = run_code(code, lambda: 5, lambda x: print("PRINT {}".format(x)))
 
 print(answer)
 
