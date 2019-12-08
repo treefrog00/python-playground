@@ -13,7 +13,7 @@ def parse_args_and_get_input():
     args = parse_args()
 
     with open(args.input) as f:
-        lines = f.readlines()
+        lines = f.read().splitlines()
 
     return args, lines
 
