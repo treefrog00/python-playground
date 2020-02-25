@@ -66,7 +66,7 @@ def find_max_output_with_feedback(code_immutable):
             if exit_code != "interrupt" and amplifier_index == 4:
                 break
 
-            amplifier_index = amplifier_index + 1 if amplifier_index < amp_count - 1 else 0
+            amplifier_index = (amplifier_index + 1) % amp_count
 
             its += 1
 

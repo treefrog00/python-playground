@@ -19,4 +19,4 @@ cookies = {
 
 r = requests.get(url, allow_redirects=True, cookies=cookies)
 
-open(expanduser('~/tmp/day{}.txt'), 'wb').write(r.content)
+open(expanduser('~/tmp/2019/day{}.txt'.format(args.day)), 'wb').write(r.content)
