@@ -23,7 +23,7 @@ def example():
     def foo():
         x = 0
         while True:
-            print 'bar'
+            print('bar')
             x += 1
 
     with SetTrace(monitor):
