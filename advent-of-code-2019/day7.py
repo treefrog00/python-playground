@@ -29,7 +29,7 @@ def find_max_output_no_feedback(code_immutable):
         for amplifier_index in range(5):
             input_count = 0
             phase_setting = perm[amplifier_index]
-            IntComputer(list(code_immutable), input_func, output_func).run()
+            IntComputer(code_immutable, input_func, output_func).run()
 
     return max_output
 
@@ -55,7 +55,7 @@ def find_max_output_with_feedback(code_immutable):
         amplifier_index = 0
         phase_setting_was_read = [False for _ in range(amp_count)]
 
-        computers = [IntComputer(list(code_immutable), input_func, output_func) for _ in range(amp_count)]
+        computers = [IntComputer(code_immutable, input_func, output_func) for _ in range(amp_count)]
 
         its = 0
 
@@ -77,13 +77,13 @@ args, lines = parse_args_and_get_input()
 
 
 if args.part_one:
-    test_code_immutable = parse_program(["3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0"])
+    test_code_immutable = parse_program("3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0")
     assert_equal(43210, find_max_output_no_feedback(test_code_immutable))
-    test_code_immutable2 = parse_program(["3,23,3,24,1002,24,10,24,1002,23,-1,23,101,5,23,23,1,24,23,23,4,23,99,0,0"])
+    test_code_immutable2 = parse_program("3,23,3,24,1002,24,10,24,1002,23,-1,23,101,5,23,23,1,24,23,23,4,23,99,0,0")
     assert_equal(54321, find_max_output_no_feedback(test_code_immutable2))
-    print(find_max_output_no_feedback(parse_program(lines)))
+    print(find_max_output_no_feedback(parse_program(lines[0])))
 else:
-    test_code_immutable = parse_program(["3,26,1001,26,-4,26,3,27,1002,27,2,27,1,27,26,27,4,27,1001,28,-1,28,1005,28,6,99,0,0,5"])
+    test_code_immutable = parse_program("3,26,1001,26,-4,26,3,27,1002,27,2,27,1,27,26,27,4,27,1001,28,-1,28,1005,28,6,99,0,0,5")
     assert_equal(139629729, find_max_output_with_feedback(test_code_immutable))
-    print(find_max_output_with_feedback(parse_program(lines)))
+    print(find_max_output_with_feedback(parse_program(lines[0])))
 

@@ -1,3 +1,5 @@
+from typing import Callable
+
 
 class Op:
     add = 1
@@ -8,6 +10,7 @@ class Op:
     jif = 6
     lt = 7
     equals = 8
+    adjust_relative_base = 9
     halt = 99
 
 
@@ -16,31 +19,44 @@ def get_modes(strop, value_count):
 
 
 class IntComputer:
-    def __init__(self, code, on_input, on_output):
-        self.code = code
+    def __init__(self, code_immutable: tuple, on_input: Callable[[], int], on_output: Callable[[int], None]):
+        self.code = list(code_immutable) + [0] * 1000
         self.ins_pointer = 0
         self.on_input = on_input
         self.on_output = on_output
+        self.relative_base = 0
 
-    def read_values(self, count):
+    def _read_values(self, count):
         vals = [self.code[index] for index in range(self.ins_pointer + 1, self.ins_pointer + count + 1)]
         self.ins_pointer = self.ins_pointer + count + 1
 
         return vals
 
+    def _get_params(self, strop, literal_modes):
+        vals = self._read_values(len(literal_modes))
+        modes = get_modes(strop, len(vals))
+
+        def get_param(index):
+            if modes[index] == 0:
+                return self.code[vals[index]]
+            if modes[index] == 1:
+                return vals[index]
+            if modes[index] == 2:
+                return self.code[vals[index] + self.relative_base]
+
+        def get_param_literal(index):
+            if modes[index] == 0:
+                return vals[index]
+            if modes[index] == 1:
+                raise Exception("mode 1 in literal mode")
+            if modes[index] == 2:
+                return vals[index] + self.relative_base
+
+        return [
+            get_param_literal(i) if literal_modes[i] else get_param(i) for i in range(len(vals))
+        ]
+
     def run(self):
-
-        def get_params(vals, count):
-            modes = get_modes(strop, count)
-
-            def get_param(index):
-                if modes[index] == 0:
-                    return self.code[vals[index]]
-                if modes[index] == 1:
-                    return vals[index]
-
-            return [get_param(i)for i in range(count)]
-
         while True:
             op_value = self.code[self.ins_pointer]
             strop = str(op_value)
@@ -51,55 +67,52 @@ class IntComputer:
                 op = int("".join(strop[-2:]))
 
             if op == Op.add:
-                vals = self.read_values(3)
-                params = get_params(vals, 2)
-                self.code[vals[2]] = params[0] + params[1]
+                params = self._get_params(strop, [False, False, True])
+                self.code[params[2]] = params[0] + params[1]
 
             elif op == Op.mult:
-                vals = self.read_values(3)
-                params = get_params(vals, 2)
-                self.code[vals[2]] = params[0] * params[1]
+                params = self._get_params(strop, [False, False, True])
+                self.code[params[2]] = params[0] * params[1]
 
             elif op == Op.inp:
-                vals = self.read_values(1)
-                self.code[vals[0]] = self.on_input()
+                params = self._get_params(strop, [True])
+                self.code[params[0]] = self.on_input()
 
             elif op == Op.outp:
-                vals = self.read_values(1)
-                params = get_params(vals, 1)
+                params = self._get_params(strop, [False])
                 interrupt = self.on_output(params[0])
                 if interrupt:
                     return "interrupt"
 
             elif op == Op.jit:
-                vals = self.read_values(2)
-                params = get_params(vals, 2)
+                params = self._get_params(strop, [False, False])
 
                 if params[0] != 0:
                     self.ins_pointer = params[1]
 
             elif op == Op.jif:
-                vals = self.read_values(2)
-                params = get_params(vals, 2)
+                params = self._get_params(strop, [False, False])
 
                 if params[0] == 0:
                     self.ins_pointer = params[1]
 
             elif op == Op.lt:
-                vals = self.read_values(3)
-                params = get_params(vals, 2)
+                params = self._get_params(strop, [False, False, True])
 
-                self.code[vals[2]] = 1 if params[0] < params[1] else 0
+                self.code[params[2]] = 1 if params[0] < params[1] else 0
 
             elif op == Op.equals:
-                vals = self.read_values(3)
-                params = get_params(vals, 2)
+                params = self._get_params(strop, [False, False, True])
 
-                self.code[vals[2]] = 1 if params[0] == params[1] else 0
+                self.code[params[2]] = 1 if params[0] == params[1] else 0
+
+            elif op == Op.adjust_relative_base:
+                params = self._get_params(strop, [False])
+                self.relative_base += params[0]
 
             elif op == Op.halt:
                 return self.code[0]
 
 
-def parse_program(lines):
-    return tuple(int(x) for x in lines[0].split(","))
+def parse_program(line):
+    return tuple(int(x) for x in line.split(","))

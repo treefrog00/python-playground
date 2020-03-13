@@ -1,10 +1,10 @@
-from common import parse_args_and_get_input, assert_equal
+from common import parse_args_and_get_input
 
 from intcode import parse_program, IntComputer
 
 args, lines = parse_args_and_get_input()
 
-code_immutable = parse_program(lines)
+code_immutable = parse_program(lines[0])
 
 
 def output(val):
@@ -12,9 +12,7 @@ def output(val):
 
 
 if args.part_one:
-    code = list(code_immutable)
-    _ = IntComputer(code, lambda: 1, output).run()
+    IntComputer(code_immutable, lambda: 1, output).run()
 else:
-    code = list(code_immutable)
-    _ = IntComputer(code, lambda: 5, output).run()
+    IntComputer(code_immutable, lambda: 5, output).run()
 

@@ -1,4 +1,4 @@
-from common import parse_args_and_get_input, assert_equal
+from common import parse_args_and_get_input
 
 
 width = 25
