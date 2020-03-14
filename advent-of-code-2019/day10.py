@@ -18,15 +18,6 @@ class Point:
     y: int
 
 
-def get_line_params(point1: Point, point2: Point):
-    dy = point2.y - point1.y
-    dx = point2.x - point1.x
-    m = dy / dx
-    c = point1.y - m * point1.x
-
-    return m, c
-
-
 def asteroid_blocks_view(viewer: Point, target: Point, asteroid: Point):
     if asteroid.x > viewer.x and asteroid.x > target.x:
         return False
@@ -43,9 +34,8 @@ def asteroid_blocks_view(viewer: Point, target: Point, asteroid: Point):
     if viewer.x == target.x:
         return asteroid.x == viewer.x
 
-    m, c = get_line_params(viewer, target)
-    expected_y = m * asteroid.x + c
-    return expected_y == asteroid.y
+    # is area of triangle equal to 0? (skipping multiplication by 0.5)
+    return viewer.x * (target.y - asteroid.y) + target.x * (asteroid.y - viewer.y) + asteroid.x * (viewer.y - target.y) == 0
 
 
 def parse_map(data: List[str]):
@@ -96,7 +86,7 @@ def part_one(asteroids):
         #print(f"Viewable for viewer {viewer}: {len(viewable)}, {viewable}")
         count_by_viewer[viewer] = len(viewable)
 
-    print(count_by_viewer.most_common(1)[0])
+    print(count_by_viewer.most_common(20))
 
 
 def part_two(asteroids, station):
@@ -111,4 +101,4 @@ args, lines = parse_args_and_get_input()
 if args.part_one:
     part_one(parse_map(lines))
 else:
-    part_two(parse_map(lines), Point(x=19, y=5))
+    part_two(parse_map(lines), Point(x=30, y=34))
