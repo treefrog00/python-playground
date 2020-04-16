@@ -1,3 +1,3 @@
-class TestThings:
-    def test_something(self):
-       assert True
+
+def test_something():
+    assert False

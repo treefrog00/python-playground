@@ -1,7 +1,7 @@
 import argparse
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="blah.")
     parser.add_argument("file_path", help="path to input file")
 
