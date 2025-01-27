@@ -1,0 +1,12 @@
+[project]
+name = "fit-file-auto-crop"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "austin-dist>=3.7.0",
+    "fitdecode>=0.10.0",
+    "polars>=1.20.0",
+    "tcxreader>=0.4.10",
+]

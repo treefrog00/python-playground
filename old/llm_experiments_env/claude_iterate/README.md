@@ -1,0 +1,1 @@
+An extremely simple, half-finished program to iterate on a coding artifact using the Claude API by outputting git diffs.

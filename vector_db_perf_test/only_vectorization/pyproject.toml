@@ -1,0 +1,24 @@
+[project]
+name = "only-vectorization"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "sentence-transformers[onnx]>=3.3.1",
+    "torch>=2.5.1",
+]
+
+# this is for ensuring the CPU version of torch is used,
+# however currently this project uses the ONNX version of
+# sentence-transformers, so not sure if it actually gets used
+# or not. Seems torch is a dependency of sentence-transformers[onnx]
+# regardless? Could be the package pulls in torch unnecessarily?
+# Dunno the details..
+[tool.uv.sources]
+torch = { index = "pytorch" }
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

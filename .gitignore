@@ -1,0 +1,15 @@
+__pycache__
+.coverage
+*.egg-info
+*.swp
+*.hypothesis
+*.orig
+.cache
+*.pickle*
+*.gz
+.idea
+.mypy_cache
+flake_errors
+.pytest_cache
+.venv
+.env

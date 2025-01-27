@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Monkey: The Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #app {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 600px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Code Monkey - The Game</h1>
+        <div id="counter" style="display: none;">Lines of code: 0</div>
+        <div id="locPerSecond" style="display: none;">LOC per second: 0.00</div>
+        <div id="message">You've just been hired as a coder by a startup. The vision is to create a new synergistic generative AI SAAS product. Time to write some code!</div>
+        <button id="writeCodeBtn">Write code</button>
+        <button id="hireEngineerBtn" style="display: none;">Hire engineer</button>
+    </div>
+
+    <script>
+        class Event {
+            constructor(name, min_code) {
+                this.name = name;
+                this.min_code = min_code;
+            }
+        }
+
+        laterEvents = [
+            new Event("Hire engineer", 20)
+        ]
+
+        let codeLines = 0;
+        let autoIncrementPerSecond = 0;
+        let firstClick = true;
+        let prevCodeLines = 0;
+        let intervalId;
+        let uiTickLength = 100;
+        let locPerSecondTickLength = 2000;
+
+        const counterElement = document.getElementById('counter');
+        const locPerSecondElement = document.getElementById('locPerSecond');
+        const messageElement = document.getElementById('message');
+        const writeCodeBtn = document.getElementById('writeCodeBtn');
+        const hireEngineerBtn = document.getElementById('hireEngineerBtn');
+
+        function updateLocPerSecond() {
+            locPerSecond = (codeLines - prevCodeLines) / (locPerSecondTickLength / 1000);
+            locPerSecondElement.textContent = `LOC per second: ${locPerSecond.toFixed(2)}`;
+            prevCodeLines = codeLines;
+        }
+
+        function updateUi() {
+            counterElement.textContent = `Lines of code: ${codeLines.toFixed(0)}`;
+
+            for (const [i, event] of laterEvents.entries()) {
+                if (codeLines >= event.min_code) {
+                    hireEngineerBtn.style.display = 'inline-block';
+
+                    // btn = document.createElement("button");
+                    // btn.setAttribute("class", "btn");
+                    // btn.onclick = function(){project.effect()};
+                    // var title = document.createTextNode(event.name);
+                    // btn.appendChild(title)
+                    //el("events").appendChild(btn);
+                    laterEvents.splice(i, 1);
+                }
+            }
+
+            if (codeLines === 10) {
+
+            }
+        }
+
+        function writeCode() {
+            if (firstClick) {
+                messageElement.style.display = 'none';
+                counterElement.style.display = 'block';
+                firstClick = false;
+
+            }
+            codeLines++;
+        }
+
+        function hireEngineer() {
+            hireEngineerBtn.style.display = 'none';
+            locPerSecondElement.style.display = 'block';
+            autoIncrementPerSecond += 0.5;
+        }
+
+        setInterval(() => {
+            updateUi();
+        }, uiTickLength);
+
+        setInterval(() => {
+            codeLines += autoIncrementPerSecond
+        }, 1000);
+
+        setInterval(() => {
+            updateLocPerSecond();
+        }, locPerSecondTickLength);
+
+        writeCodeBtn.addEventListener('click', writeCode);
+        hireEngineerBtn.addEventListener('click', hireEngineer);
+    </script>
+</body>
+</html>

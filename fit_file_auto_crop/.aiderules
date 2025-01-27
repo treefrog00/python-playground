@@ -1,0 +1,5 @@
+Python coding guidelines:
+
+* Never use try/catch, just assume a happy path for initial implementation and keep it as simple as possible
+* always use pathlib not os.path
+* this project uses uv, prefix all Python commands with "uv run"

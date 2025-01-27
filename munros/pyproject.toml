@@ -1,0 +1,14 @@
+[project]
+name = "munro-db"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "beautifulsoup4>=4.12.3",
+    "httpx>=0.28.1",
+    "ipython>=8.31.0",
+    "pillow>=11.1.0",
+    "pyproj>=3.7.0",
+    "requests>=2.32.3",
+]

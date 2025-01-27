@@ -1,0 +1,72 @@
+version = 1
+requires-python = ">=3.11"
+
+[[package]]
+name = "austin-dist"
+version = "3.7.0"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/82/ec/66d49f755a3e0a980324d9f3acc43de5bf0ea87eea52fd826d87300c7d7c/austin_dist-3.7.0-1-py2.py3-none-macosx_11_0_x86_64.whl", hash = "sha256:92a98e436336355473e8f5145aaea9fa524c97b4cd5336719ebb8a07c963ca79", size = 41803 },
+    { url = "https://files.pythonhosted.org/packages/9f/2c/bc25aeaf7ad41450eea1f293b008508f5dfa9ef724690603b22b2c32987f/austin_dist-3.7.0-py2.py3-none-macosx_11_0_arm64.whl", hash = "sha256:72ac1883dfc7e750a25434d72722bca5faf45c95d0a84c22ea8d97152c51a1e7", size = 40880 },
+    { url = "https://files.pythonhosted.org/packages/66/a9/ac086a7e24c5f74e8fe85cc805a715ef7794eb41e716739e8c9cabea11b5/austin_dist-3.7.0-py2.py3-none-macosx_11_0_x86_64.whl", hash = "sha256:61d16d9a8e81dccc31e1cae2137885d0d7257ecad673b77b0e69de16cda7a2f0", size = 43094 },
+    { url = "https://files.pythonhosted.org/packages/3b/af/63d9cc839352e43d302f972b0d94365cd9f709d6830e19e89d47f7b5d284/austin_dist-3.7.0-py2.py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:e73d3cad0b5c8d51e5b2130dd61cfa0ea8f9c01013ab6f536fb5199a17547b96", size = 677235 },
+    { url = "https://files.pythonhosted.org/packages/1f/30/61f454aad245f4160481dab9f4f261646263b8201cd97f6ae88eef6cc8dd/austin_dist-3.7.0-py2.py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1cd9a7f7f22cc9a9f961ff11f27a18ac5c03a35fc564b1de68a84eb8191d559d", size = 639062 },
+    { url = "https://files.pythonhosted.org/packages/fa/65/7645d493335888b67e86b2fb90c65d49a19c8be3b95fda98d36cf8b00b61/austin_dist-3.7.0-py2.py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:9ea01bdc2b3ffcee67da9a4514cc2b40a526c2cc3a753516010e99acb0744f30", size = 501296 },
+    { url = "https://files.pythonhosted.org/packages/22/b1/619878c340c2145e257c6aaac49a60e70a22e8c3b6e67ee82cd07ec05637/austin_dist-3.7.0-py2.py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:402ab2ea7ce8f2f431102d37b5ea0289c9c6868eb1a8ba3b0f09fd1df3280add", size = 841296 },
+    { url = "https://files.pythonhosted.org/packages/95/b5/c20a8ae4d970a58d7ef7cefc903b4b4ab817659767d400a85db975336e0e/austin_dist-3.7.0-py2.py3-none-musllinux_1_1_aarch64.whl", hash = "sha256:a125130171389b0b7baab7168787893bce0972db88b8b5e9811b41b774bea5e2", size = 40419 },
+    { url = "https://files.pythonhosted.org/packages/d9/d9/a0ef743ba0bc62b36921caba8a0bb2f0e672196e0c73f6afd0911dcb23dd/austin_dist-3.7.0-py2.py3-none-musllinux_1_1_armv7l.whl", hash = "sha256:a853294017a480cf92226382077a0e90e3719ffe6aa4c76b1d9a3a6d3346ae7d", size = 37750 },
+    { url = "https://files.pythonhosted.org/packages/ac/69/017c54941434e9b8304b5a89f11b6047c56756401bb2223b2fabd154711c/austin_dist-3.7.0-py2.py3-none-musllinux_1_1_ppc64le.whl", hash = "sha256:26a816a6df008ea652dca67e9fba3d91ed27d0d65d813eabe7bfec9becf540c4", size = 41864 },
+    { url = "https://files.pythonhosted.org/packages/02/4e/75ab56f3fe82141396c2563336c7165da529fb705ecb8abb10e4683ee79f/austin_dist-3.7.0-py2.py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:2ef2976d4f188fa6fa316c710bb64a79feb7ff5662154b893face916bf0a9c81", size = 40645 },
+    { url = "https://files.pythonhosted.org/packages/86/d0/b8cc79892a7f40d7bf82f092f334099646d526d4ff2f11c6291cbe5ded5b/austin_dist-3.7.0-py2.py3-none-win_amd64.whl", hash = "sha256:760dabaff27022d238091c1d9de9234c881359d0f98295ae8c0428ffc33868c8", size = 54901 },
+]
+
+[[package]]
+name = "fit-file-auto-crop"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "austin-dist" },
+    { name = "fitdecode" },
+    { name = "polars" },
+    { name = "tcxreader" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "austin-dist", specifier = ">=3.7.0" },
+    { name = "fitdecode", specifier = ">=0.10.0" },
+    { name = "polars", specifier = ">=1.20.0" },
+    { name = "tcxreader", specifier = ">=0.4.10" },
+]
+
+[[package]]
+name = "fitdecode"
+version = "0.10.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/9e/8c/7cf1d2865fc0d593dfd389704b751ca1ed2a98860c41d4587c5b49637da3/fitdecode-0.10.0.tar.gz", hash = "sha256:1b85d1303c87650c11377a7322757eaa1caf229776bbd5b545591dd6815123e4", size = 89048 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4b/de/cf0f223255bf12c885acdc3bcce7fdc5607db496d3e3b682c001a51406e0/fitdecode-0.10.0-py3-none-any.whl", hash = "sha256:527dc2e4b0fe45dbe868a2131af0a544cb686f631f608d94e392bcce57b047cf", size = 90890 },
+]
+
+[[package]]
+name = "polars"
+version = "1.20.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/dd/8f/1005f24c8c413d8a393973fcb45e6085a2311bb513ee0c6674d438e99c31/polars-1.20.0.tar.gz", hash = "sha256:e8e9e3156fae02b58e276e5f2c16a5907a79b38617a9e2d731b533d87798f451", size = 4292434 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/93/ef/74d56f82bc2e7911276ffad8f24e7ae6f7a102ecab3b2e88b87e84243356/polars-1.20.0-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:9a313e10ea80b99a0d32bfb942b2260b9658155287b0c2ac5876323acaff4f2c", size = 32143323 },
+    { url = "https://files.pythonhosted.org/packages/dd/e1/51c7b2bc3037af89f1c109b61a2d2f44c411212df63dd0e9c6683b66d98e/polars-1.20.0-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:4474bd004376599f7e4906bd350026cbbe805ba604121090578a97f63da15381", size = 28954418 },
+    { url = "https://files.pythonhosted.org/packages/2a/1a/862b8bf65182b261022292a1cd49728db876a1ef64ff377d6f7b17653886/polars-1.20.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4996e17cb6f57d9aeaf79f66c54ef2913cea7bd025410c076ef8c05d4f7d792a", size = 32850943 },
+    { url = "https://files.pythonhosted.org/packages/b7/33/1970863f0c1782a916299346d150c5bb8373d4e6827fabb8c37a0a2bcb8e/polars-1.20.0-cp39-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:d488ffb92d4934d9c326fa2d0fb2e9a4e3c2c625c59f4a77a77e4acd4d5a0d66", size = 29885148 },
+    { url = "https://files.pythonhosted.org/packages/bb/2d/b29112da3e98ba55e8ba77f08a90312004d2e4be0fd6401ff7d5d71eae0a/polars-1.20.0-cp39-abi3-win_amd64.whl", hash = "sha256:5ce417d2b6d4f3b8f422fcb3482039e8076182cceacbd880175fe970c6f99c84", size = 32947632 },
+    { url = "https://files.pythonhosted.org/packages/60/da/245e5852342cab10c48dc788f7b3d39a1f926f783ea124f196ad783ea6aa/polars-1.20.0-cp39-abi3-win_arm64.whl", hash = "sha256:f474f3d65450138cd2dbab2d9b6041b8646c30fad0b28e6d62457788f994bf62", size = 29141207 },
+]
+
+[[package]]
+name = "tcxreader"
+version = "0.4.10"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/0a/05/2e194156ce0a7d9632c56b27afa678eec29eae4ba05eb04467bbb5afbc71/tcxreader-0.4.10.tar.gz", hash = "sha256:baee3e51805af8ecf0d271bb09e3c4b5bad15b5962855460d423dd76f84d5db5", size = 11660 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/b6/a97b9a7e5d8b42a719a660ddc2e9c8096d034f5c59ff9e2e430124383020/tcxreader-0.4.10-py3-none-any.whl", hash = "sha256:2e2e2f6d459e64d8ac9310c1a0ab8ed444e2ac2d50b7c0beb7ba087479dcac54", size = 9498 },
+]

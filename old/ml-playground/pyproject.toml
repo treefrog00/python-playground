@@ -1,0 +1,41 @@
+[project]
+name = "ml-playground"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
+name = "ml-playground"
+version = "0.1.0"
+description = "Hello"
+
+[tool.poetry.dependencies]
+python = "~3.11"
+langchain-anthropic = "^0.1.21"
+langchain-chroma = "^0.1.2"
+torch = {version = "^2.4.0+cpu", source = "pytorch-cpu"}
+# spacy models used by torchtext translation example
+en-core-web-sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl"}
+de_core_news_sm = {url = "https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.7.0/de_core_news_sm-3.7.0-py3-none-any.whl"}
+spacy = "^3.7.5"
+torchtext = "^0.18.0"
+langchain-community = "^0.2.10"
+langchain-google-vertexai = "^1.0.8"
+pandas = "^2.2.2"
+click = "^8.1.7"
+matplotlib = "^3.9.2"
+jupyter = "^1.1.1"
+streamlit = "^1.39.0"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.8.0"
+ipython = "^8.26.0"
+jupyterlab = "^4.2.4"
+
+# this ensures torch uses the much smaller CPU-only version of pytorch
+[[tool.poetry.source]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"

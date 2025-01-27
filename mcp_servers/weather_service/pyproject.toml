@@ -1,0 +1,16 @@
+[project]
+name = "weather-service"
+version = "0.1.0"
+description = "A MCP server project"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+ "httpx>=0.28.1",
+ "mcp[cli]>=1.2.0"
+]
+[[project.authors]]
+name = "James Gregory"
+email = "james.jrg@gmail.com"
+
+[project.scripts]
+weather-service = "weather_service:main"
