@@ -53,8 +53,6 @@ python extract_data.py
 python create_icons.py
 ```
 
-To run web server
-
 Attribution:
 - the scraped data is copyright Steve Fallon
 - the bike icon is Creative Commons non-commercial use, Laura Lin, from Noun project
