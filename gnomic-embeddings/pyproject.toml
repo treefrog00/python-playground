@@ -1,0 +1,19 @@
+[project]
+name = "multihead-attention"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "sentence-transformers>=3.4.1",
+    "torch>=2.5.1",
+]
+
+# this is for ensuring the CPU version of torch is used
+[tool.uv.sources]
+torch = { index = "pytorch" }
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
