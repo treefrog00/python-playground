@@ -1,0 +1,18 @@
+[project]
+name = "fastapi-docker-cloudrun"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.11",
+    "firebase-admin>=6.7.0",
+    "jinja2>=3.1.6",
+    "python-multipart>=0.0.20",
+    "uvicorn>=0.34.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.0.2",
+]
