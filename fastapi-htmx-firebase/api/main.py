@@ -7,8 +7,17 @@ from fastapi.routing import APIRouter
 
 from api.routes.firebase_routes import firebase_router
 from api.routes.htmx_demo import htmx_router
-from api.lifetime import register_shutdown_event, register_startup_event
 from api.exception_handlers import register_exception_handlers
+
+import firebase_admin
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # initialize firebase using application default credentials
+    firebase_admin.initialize_app()
+    yield
+    # no shutdown needed
 
 def get_app() -> FastAPI:
     app = FastAPI(
@@ -18,13 +27,11 @@ def get_app() -> FastAPI:
         redoc_url='/api/redoc',
         openapi_url='/api/openapi.json',
         default_response_class=UJSONResponse,
+        lifespan=lifespan,
     )
 
-    register_startup_event(app)
-    register_shutdown_event(app)
     register_exception_handlers(app)
 
-    # api_router = APIRouter()
     app.include_router(router=firebase_router, prefix='/firebase')
     app.include_router(router=htmx_router, prefix='/htmx', tags=['htmx'])
 
