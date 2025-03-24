@@ -1,0 +1,20 @@
+[project]
+name = "crewai_agentops"
+version = "0.1.0"
+description = "observability_test using crewAI"
+requires-python = ">=3.12"
+dependencies = [
+    "crewai[agentops,tools]>=0.108.0,<1.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project.scripts]
+kickoff = "main:kickoff"
+plot = "main:plot"
+
+[tool.crewai]
+type = "flow"
