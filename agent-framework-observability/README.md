@@ -12,9 +12,11 @@ add direnv hook:
 
 https://github.com/direnv/direnv/blob/master/docs/hook.md
 
-The models are currently configured to use Google Gemini, which requires the env variable GEMINI_API_KEY to be set in the direnv .env file for each sub-project. Possibly I will change this at some point to use Google Vertex AI instead at some point, using gcloud auth (https://docs.litellm.ai/docs/providers/vertex#environment-variables and `gcloud auth application-default login`).
+The models are currently configured to use Google Gemini via Google AI, which requires an env variable for the API key.
 
-Each project has its own uv Python project and venv, with common files in the `common` package added via a symlink in each folder.
+For CrewAI this is named `GEMINI_API_KEY`, for langchain/langgraph it is `GOOGLE_API_KEY`. This needs to be set in the direnv .env file for each sub-project. Possibly I will change at some point to using Google Vertex AI (part of GCP) instead of Google AI at some point, which in turn uses gcloud auth instead of an API key. E.g. using `gcloud auth application-default login`, or less securely adding a local JSON auth key. For CrewAI see the docs on Gemini config here: https://docs.litellm.ai/docs/providersc/vertex#environment-variables, for langchain/langgraph see the docs on Gemini config here: https://python.langchain.com/docs/integrations/chat/google_generative_ai/
+
+Each project has its own uv Python project and venv, with common files in the `common` package added via a symlink in each folder. However, it's ended up that this common folder is almost unused, and instead I've followed different tutorials doing different things for each framework (beyond configuring a common model name, which even then isn't a single source of truth).
 
 ## The agentic frameworks and their observability tools:
 

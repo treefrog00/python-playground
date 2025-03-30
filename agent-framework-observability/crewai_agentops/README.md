@@ -19,3 +19,7 @@ or
 ```bash
 crewai run
 ```
+
+### AgentOps
+
+Add a AGENTOPS_API_KEY to .env to enable agent ops tracing. There is a line in `main.py` that initializes it with `agentops.init()`.
