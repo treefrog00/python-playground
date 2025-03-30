@@ -1,2 +1,0 @@
-import agentops
-agentops.init()
