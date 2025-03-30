@@ -12,11 +12,7 @@ add direnv hook:
 
 https://github.com/direnv/direnv/blob/master/docs/hook.md
 
-The models are currently configured to use Google Gemini, using auth via
-
-```
-gcloud auth application-default login
-```
+The models are currently configured to use Google Gemini, which requires the env variable GEMINI_API_KEY to be set in the direnv .env file for each sub-project. Possibly I will change this at some point to use Google Vertex AI instead at some point, using gcloud auth (https://docs.litellm.ai/docs/providers/vertex#environment-variables and `gcloud auth application-default login`).
 
 Each project has its own uv Python project and venv, with common files in the `common` package added via a symlink in each folder.
 

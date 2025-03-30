@@ -13,8 +13,8 @@ build-backend = "hatchling.build"
 
 
 [project.scripts]
-kickoff = "main:kickoff"
-plot = "main:plot"
+kickoff = "crewai_agentops.main:kickoff"
+plot = "crewai_agentops.main:plot"
 
 [tool.crewai]
 type = "flow"
