@@ -14,27 +14,17 @@ add direnv hook:
 
 https://github.com/direnv/direnv/blob/master/docs/hook.md
 
-uvicorn app.main:app --host 0.0.0.0 --port 1234 --workers 1
+uvicorn app.main:app --host 0.0.0.0 --port 5000 --workers 1
 
 Local with docker
 ===================
 
-Create .env, and add:
+Copy .env.template, and update PROJECT_ID and APP accordingly.
 
-PROJECT_ID=<YOUR_UNIQUE_LOWER_CASE_PROJECT_ID>
-APP=<app name>
-PORT=1234
-TAG="gcr.io/$PROJECT_ID/$APP"
-REGION="europe-west1"
-
-Then:
-
-```
-export TAG="gcr.io/$PROJECT_ID/$APP"
-```
+Then, after ensuring direnv has updated to the latest env vars:
 
 docker build -t $TAG .
-docker run --rm -dp $PORT:$PORT -e PORT=$PORT $TAG
+docker run --rm -dp 5000:5000 $TAG
 
 Cloud run:
 ==========
