@@ -13,3 +13,4 @@ flake_errors
 .pytest_cache
 .venv
 .env
+.ipynb_checkpoints
