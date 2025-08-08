@@ -1,10 +1,9 @@
 import json
-from collections.abc import Collection
 
 all_the_numbers = {*range(1, 10)}
 
 def solve(
-    sudoku: Collection[Collection[int]],
+    sudoku: list[list[int]],
     row: int,
     col: int) -> bool:
 
